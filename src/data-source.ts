@@ -1,6 +1,12 @@
 import { DataSource } from "typeorm";
 import { User } from "./entities/userEntity";
 import dotenv from 'dotenv'
+import { Product } from "./entities/productEntity";
+import { OrderItem } from "./entities/orderItemEntity";
+import { Order } from "./entities/orderEntity";
+import { CartItem } from "./entities/cartItemEntity";
+import { Cart } from "./entities/cartEntity";
+import { Address } from "./entities/addressEntity";
 dotenv.config()
 
 
@@ -13,6 +19,6 @@ export const appDataSource = new DataSource({
     database: 'ecommerce_db',
     synchronize: true,
     logging: true,
-    entities: [User], 
+    entities: [User, Product, OrderItem, Order, CartItem, Cart, Address], 
     migrations: []
 })

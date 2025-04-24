@@ -1,6 +1,6 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { User } from "./userEntity";
-import { IsOptional } from "class-validator";
+import { IsIn, IsOptional } from "class-validator";
 
 @Entity()
 export class Address{
@@ -23,13 +23,18 @@ export class Address{
     country!: string;
 
     @Column()
+    @IsIn(["Home", "Office", "Other"])
     label!: string //Home,Office
 
     @IsOptional()
-    @Column({default:false})
+    @Column({type:'boolean' ,default:false})
     isDefault!: boolean;
 
-    @ManyToOne(() => User, (user) => user.address )
+    @ManyToOne(() => User, (user) => user.addresses,{
+        onDelete:'CASCADE'
+    } )
     user!: User
+
+    
 
 }

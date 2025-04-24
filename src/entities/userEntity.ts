@@ -1,6 +1,8 @@
-import { IsEmail } from "class-validator";
-import { Column, CreateDateColumn, Entity, HostAddress, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { IsEmail, IsIn } from "class-validator";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, HostAddress, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Address } from "./addressEntity";
+import { Cart } from "./cartEntity";
+import { Order } from "./orderEntity";
 
 
 @Entity()
@@ -8,12 +10,25 @@ export class User  {
 @PrimaryGeneratedColumn("uuid")
 id!: string;
 
-@Column()
+@Column({unique: true})
 @IsEmail()
 email!: string
 
-@Column()
+@Column({select: false})
 password!: string
+
+@Column({ nullable: true })
+firstName?: string;
+
+@Column({ nullable: true })
+lastName?: string;
+
+@Column({ nullable: true })
+phoneNumber?: string;
+
+@Column({default: 'customer'})
+@IsIn(['customer', 'admin', 'support'])
+role!: string;
 
 @CreateDateColumn()
 createdAt!: Date;
@@ -21,15 +36,19 @@ createdAt!: Date;
 @UpdateDateColumn()
 updatedAt!: Date
 
-@OneToMany(() => Order, (order) => order.user)
-order!: Order[];
+@DeleteDateColumn()
+deletedAt?: Date;
 
-@OneToMany(() => HostAddress, (address) => address.user,{
+@OneToMany(() => Order, (order) => order.user)
+orders!: Order[];
+
+@OneToMany(() => Address, (address) => address.user,{
     cascade: true,
 })
-address!: string
+addresses!: Address[]
 
-@OneToOne(() => Cart, (cart) => cart.user)
-cart!: Cart;
+@OneToOne(() => Cart, (cart) => cart.user )
+@JoinColumn()
+cart!: Cart
 
 }
