@@ -1,25 +1,36 @@
 import express, {Request, Response} from 'express'
 import dotenv from 'dotenv'
-import { appDataSource } from './data-source'
+import { AppDataSource } from './config/data-source'
+import authRoutes from './routes/auth.route'
+import { error } from 'console'
+
 dotenv.config()
 
 const app = express()
+const PORT = process.env.PORT || 5000;
+
+
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
 
-const PORT = process.env.PORT || 5000;
-appDataSource.initialize()
+// Routes
+app.use('/api/auth', authRoutes)
 app.get('/', (req:Request, res: Response) =>{
-    try{
-        res.status(200).json("Hello, world");
-    }catch(error){
-        console.log("Server is not working:", error);
-        res.status(500).send("Internal Server Error");
-    }
+    res.status(200).json("Hello, world");
+
 })
+AppDataSource.initialize()
+.then(() => {
+      console.log('Connected to database');
 
 
 app.listen(PORT, () =>{
-    console.log(`Your server is running on PORT http://localhost:${PORT}`)
+        console.log(`Your server is running on PORT http://localhost:${PORT}`)
+    })
 })
+.catch((error) =>{
+    console.error("Database connnection failed:", error)
+})
+
+
