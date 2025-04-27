@@ -7,8 +7,8 @@ import { jwtUtils } from "../utils/jwt.utils";
 
 const userRepo = AppDataSource.getRepository(User)
 
-export const registerUserService = async (payload: RegisterPayload): Promise<object> =>{
-    const existingUser = userRepo.findOne({where: {email: payload.email}})
+export const registerUserService = async (payload: RegisterPayload): Promise<User> =>{
+    const existingUser =await userRepo.findOne({where: {email: payload.email}})
     if(!existingUser){
         throw error ('Email already exists')
     }
@@ -18,26 +18,10 @@ export const registerUserService = async (payload: RegisterPayload): Promise<obj
     return userRepo.save(newUser)
 }
 
-// export const loginUserService = async (payload: LoginPayload) =>{
-//     const user = await userRepo.findOne({where: {email: payload.email}})
-//     if(!user) throw error ("Invalid Credentials")
-   
-//     const isMatch = await hashUtil.compare(payload.password, user.password)
-//     if(!isMatch) throw error ("Invalid Credentials")
-
-//     const tokenPayload = {
-//         userId: user.id,
-//         email: user.email,
-//         role: user.role
-//     };
-
-//     return jwtUtils.jwtSign(tokenPayload)
-// }
-
 
 export const loginUserService = async (payload: LoginPayload): Promise<string> => {
     const validRoles = ['customer', 'admin', 'support'] as const;
-    const user = await userRepo.findOne({ where: { email: payload.email } });
+    const user = await userRepo.findOne({ where: { email: payload.email }, select: ['password', 'role', 'id', 'role'] });
   
     if (!user) throw new Error('Invalid credentials');
   

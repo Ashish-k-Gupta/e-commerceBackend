@@ -19,7 +19,7 @@ export const loginUser = async (req: Request, res: Response) =>{
 
     }catch(err){
         if(err instanceof Error){
-            res.status(400).json({ message: 'Registration failed', err});
+            res.status(400).json({ message: err.message});
         }else{
             res.status(401).json({ message: 'Login failed', error: 'Unknown error' });
         }
