@@ -19,7 +19,7 @@ export const AppDataSource = new DataSource({
     port: 5432,
     database: 'ecommerce_db',
     synchronize: true,
-    logging: false,
+    logging: true,
     entities: [User, Product, OrderItem, Order, CartItem, Cart, Address], 
     migrations: []
 })
