@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction} from "express";
-import { createAddressService, getAddressesService, deleteAddressService } from "../services/addressServices";
+import { createAddressService, getAddressesService, deleteAddressService, updateAddressService, getAddressByIdService } from "../services/addressServices";
 
 
 export const createAddress = async(req: Request, res: Response, next: NextFunction) =>{
@@ -22,6 +22,23 @@ export const getAddresses = async (req: Request, res: Response) => {
     }
 };
 
+export const getAddressById = async (req: Request, res: Response) =>{
+    try{
+        const userId = (req as any).user.userId;
+        const addressId = req.params.id;
+
+        const address = await getAddressByIdService(userId, addressId);
+
+        if(!address){
+            return res.status(404).json({message: "Address not found"})
+        }
+
+    }catch(err){
+
+
+    }
+}
+
 export const deleteAddress = async (req: Request, res: Response) => {
     try {
         const userId = (req as any).user.userId;
@@ -33,3 +50,13 @@ export const deleteAddress = async (req: Request, res: Response) => {
     }
 };
 
+export const updateAddress = async (req: Request, res: Response) =>{
+    try{
+        const userId = (req as any).user.userId;
+        const addressId = req.params.id;
+        const updatedAddress = await updateAddressService(addressId, userId, req.body)
+        res.status(200).json({ message: "Address updated successfully", address: updatedAddress });
+    }catch(err){
+        res.status(400).json({message: "Failed to udpated address", error: err instanceof Error ? err.message: "Unknown error"})
+    }
+}

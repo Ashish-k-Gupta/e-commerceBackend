@@ -1,0 +1,8 @@
+- [x] User Authentication (done!)
+- [ ] Address CRUD
+- [ ] Admin Product CRUD
+- [ ] Product browsing for users
+- [ ] Cart system
+- [ ] Order checkout flow
+- [ ] Order history
+- [ ] Admin order management
