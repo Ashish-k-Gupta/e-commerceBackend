@@ -27,12 +27,19 @@ export const getAddressesService = async (userId: string): Promise<Address[]> =>
 }
 
 export const getAddressByIdService = async(userId: string, addressId: string): Promise<Address | null> =>{
-    return addressRepo.findOne({
+    const address =await addressRepo.findOne({
         where:{
-            id: addressId,
-            user: {id: userId}
-        }
+            user: {id: userId},
+            id: addressId
+        },
+        relations:['user']
     })
+
+    if (!address) {
+        return null;
+    }
+    return address;
+
 }
 
 

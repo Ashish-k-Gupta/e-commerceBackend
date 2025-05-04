@@ -27,15 +27,23 @@ export const getAddressById = async (req: Request, res: Response) =>{
         const userId = (req as any).user.userId;
         const addressId = req.params.id;
 
-        const address = await getAddressByIdService(userId, addressId);
-
-        if(!address){
-            return res.status(404).json({message: "Address not found"})
+        if (!userId || !addressId) {
+             res.status(400).json({ message: "Missing userId or addressId" });
+             return
         }
 
+        const address = await getAddressByIdService(userId, addressId);
+
+        if (!address) {
+             res.status(404).json({ message: "Address not found" });
+             return
+        }
+
+        res.status(200).json(address);
+
+
     }catch(err){
-
-
+        res.status(400).json({message:'Failed to get address', error: err instanceof Error ? err.message: 'Unknown error'});
     }
 }
 
