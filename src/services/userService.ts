@@ -58,7 +58,7 @@ export const deleteUserService = async(userId: string):Promise<string> =>{
     
 }
 
-export const createUserService = async(payload: CreateUserPayload): Promise<{message: string, user:User}> =>{
+export const createUserService = async(payload: CreateUserPayload): Promise<{user:User}> =>{
     const normalizedEmail = payload.email.toLowerCase();
     const existingUser = await userRepo.findOne({
         where: {email: normalizedEmail},
@@ -81,7 +81,6 @@ export const createUserService = async(payload: CreateUserPayload): Promise<{mes
         select: ['id','email', 'firstName', 'role'],
     })
     return {
-        message: "User registered successfully",
         user: newUserResponse!,
     };
 
