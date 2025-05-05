@@ -1,6 +1,6 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { User } from "./userEntity";
-import { IsIn, IsOptional } from "class-validator";
+import { IsIn, IsNotEmpty, IsOptional, IsString } from "class-validator";
 
 @Entity()
 export class Address{
@@ -8,21 +8,27 @@ export class Address{
     id!: string
 
     @Column()
+    @IsString()
     street!: string;
     
     @Column()
-    zipcode!: string;
+    @IsString()
+    zipCode!: string;
 
     @Column()
+    @IsString()
     city!: string;
 
     @Column()
+    @IsString()
     state!: string;
     
     @Column()
+    @IsString()
     country!: string;
 
     @Column()
+    @IsNotEmpty()
     @IsIn(["Home", "Office", "Other"])
     label!: string //Home,Office
 

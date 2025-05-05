@@ -42,8 +42,8 @@ export const getAddressById = async (req: Request, res: Response) =>{
         res.status(200).json(address);
 
 
-    }catch(err){
-        res.status(400).json({message:'Failed to get address', error: err instanceof Error ? err.message: 'Unknown error'});
+    }catch(err){        res.status(400).json({message:'Failed to get address', error: err instanceof Error ? err.message: 'Unknown error'});
+
     }
 }
 

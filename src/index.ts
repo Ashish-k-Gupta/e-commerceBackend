@@ -4,6 +4,7 @@ import { AppDataSource } from './config/data-source'
 import authRoutes from './routes/auth.route'
 import authMiddleware from './middlewares/authMiddleware'
 import addressRouter from './routes/address.route'
+import userRouter from './routes/user.route'
 
 dotenv.config()
 
@@ -18,6 +19,7 @@ app.use(express.urlencoded({extended: true}))
 app.use('/api/auth', authRoutes)
 app.use('/orders', authMiddleware, )
 app.use('/api/addresses', addressRouter)
+app.use('/', userRouter)
 app.get('/', (req:Request, res: Response) =>{
     res.status(200).json("Hello, world");
 
@@ -25,7 +27,6 @@ app.get('/', (req:Request, res: Response) =>{
 AppDataSource.initialize()
 .then(() => {
       console.log('Connected to database');
-
 
 app.listen(PORT, () =>{
         console.log(`Your server is running on PORT http://localhost:${PORT}`)

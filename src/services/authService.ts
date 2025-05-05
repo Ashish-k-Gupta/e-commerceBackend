@@ -1,4 +1,3 @@
-import { error } from "console";
 import { AppDataSource } from "../config/data-source";
 import { LoginPayload, RegisterPayload } from "../dtos/auth.dto";
 import { User } from "../entities/userEntity";
@@ -18,7 +17,11 @@ export const registerUserService = async (payload: RegisterPayload): Promise<{me
         throw new Error ('Email already exists')
     }
     const hashedPassword =await hashUtil.hash(payload.password)
-    const newUser = userRepo.create({...payload, password: hashedPassword})
+    const newUser = userRepo.create({
+      ...payload,
+      email: payload.email.toLowerCase(),
+      password: hashedPassword
+    })
     const savedUser = await userRepo.save(newUser)
     const cleanUser = await userRepo.findOne({
       where: { id: savedUser.id },
