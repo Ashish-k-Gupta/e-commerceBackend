@@ -2,7 +2,6 @@ import { MigrationInterface, QueryRunner } from "typeorm";
 import * as bcrypt from 'bcrypt'
 import { User } from "../entities/userEntity";
 
-
 export class CreateAdminUser20230505000000 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void>{
         const rawPassword = process.env.ADMIN_PASSWORD || 'WTH@Ashish'; 

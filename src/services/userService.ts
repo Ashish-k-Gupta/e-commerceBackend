@@ -1,6 +1,7 @@
 import { AppDataSource } from "../config/data-source";
-import { UpdateUserPayload } from "../dtos/user.dto";
+import { CreateUserPayload, UpdateUserPayload } from "../dtos/user.dto";
 import { User } from "../entities/userEntity";
+import { hashUtil } from "../utils/hash.util";
 
 const userRepo = AppDataSource.getRepository(User)
 
@@ -55,4 +56,33 @@ export const deleteUserService = async(userId: string):Promise<string> =>{
     await userRepo.remove(deleteUser);
     return `User with ID ${userId} has been deleted successfully`;
     
+}
+
+export const createUserService = async(payload: CreateUserPayload): Promise<{message: string, user:User}> =>{
+    const normalizedEmail = payload.email.toLowerCase();
+    const existingUser = await userRepo.findOne({
+        where: {email: normalizedEmail},
+    })
+    
+    if(existingUser){
+        throw new Error ('Email already exists')
+    }
+    const hashedPassword = await hashUtil.hash(payload.password)
+    const newUser = userRepo.create({
+        ...payload,
+        email: normalizedEmail,
+        password: hashedPassword
+    })
+    const savedUser = await userRepo.save(newUser)
+    const newUserResponse =await userRepo.findOne({
+        where: {
+            id: savedUser.id
+        },
+        select: ['id','email', 'firstName', 'role'],
+    })
+    return {
+        message: "User registered successfully",
+        user: newUserResponse!,
+    };
+
 }

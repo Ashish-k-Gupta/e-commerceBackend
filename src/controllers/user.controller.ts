@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction} from "express";
-import { deleteUserService, getUserDetailService, getUserListService, updateUserDetailService } from "../services/userService";
+import { createUserService, deleteUserService, getUserDetailService, getUserListService, updateUserDetailService } from "../services/userService";
 import { error } from "console";
 
 
@@ -16,6 +16,17 @@ export const getUserDetails = async(req: Request, res: Response, next: NextFunct
         res.status(404).json({message: "User not Found", error: err instanceof Error ? err.message: 'Unknown error'})
     }
 }
+export const createUser = async (req: Request, res: Response, next: NextFunction) =>{
+     try {
+            const user = await createUserService(req.body)
+            res.status(201).json({ message: 'User registered successfully', user });
+        } catch (error) {
+            if (error instanceof Error) {
+              res.status(400).json({ message: error.message });
+            }
+            res.status(500).json({ message: 'Internal server error' });
+          }
+        }
 
 export const getUserList = async(req: Request, res: Response, next : NextFunction) =>{
     try{

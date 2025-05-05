@@ -6,35 +6,6 @@ import { jwtUtils } from "../utils/jwt.utils";
 
 const userRepo = AppDataSource.getRepository(User)
 
-export const registerUserService = async (payload: RegisterPayload): Promise<{message: string; user: Partial<User>}> =>{
-    const existingUser =await userRepo.findOne({
-      where: {email: payload.email},
-    })
-
-    console.log('existingUser:', existingUser);
-
-    if(existingUser){
-        throw new Error ('Email already exists')
-    }
-    const hashedPassword =await hashUtil.hash(payload.password)
-    const newUser = userRepo.create({
-      ...payload,
-      email: payload.email.toLowerCase(),
-      password: hashedPassword
-    })
-    const savedUser = await userRepo.save(newUser)
-    const cleanUser = await userRepo.findOne({
-      where: { id: savedUser.id },
-      select: ['id', 'email', 'firstName', 'role' ],
-  });
-
-  return {
-      message: "User registered successfully",
-      user: cleanUser!,
-  };
-  }
-
-
 export const loginUserService = async (payload: LoginPayload): Promise<string> => {
     const validRoles = ['customer', 'admin', 'support'] as const;
     const user = await userRepo.findOne({ where: { email: payload.email }, select: ['password', 'role', 'id', 'role'] });

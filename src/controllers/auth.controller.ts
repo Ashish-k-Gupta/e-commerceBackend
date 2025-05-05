@@ -1,16 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { loginUserService, registerUserService } from "../services/authService"
-
-
-export const registerUser = async (req: Request, res: Response) =>{
-    try {
-        const user = await registerUserService(req.body)
-        res.status(201).json({ message: 'User registered successfully', user });
-    }catch(err){
-        res.status(400).json({ message: 'Registration failed', err});
-    }
-}
-
+import { loginUserService } from "../services/authService"
 
 export const loginUser = async (req: Request, res: Response) =>{
     try{
