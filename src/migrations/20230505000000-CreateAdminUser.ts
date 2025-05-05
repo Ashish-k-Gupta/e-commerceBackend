@@ -5,7 +5,7 @@ import { User } from "../entities/userEntity";
 
 export class CreateAdminUser20230505000000 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void>{
-        const rawPassword = process.env.ADMIN_PASSWORD || 'Test@1234'; 
+        const rawPassword = process.env.ADMIN_PASSWORD || 'WTH@Ashish'; 
         const hashedPassword = await bcrypt.hash(rawPassword, 10)
         
         await queryRunner.manager.insert(User,{
