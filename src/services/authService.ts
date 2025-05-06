@@ -16,7 +16,7 @@ export const loginUserService = async (payload: LoginPayload): Promise<string> =
     if (!isMatch) throw new Error('Invalid credentials');
   
     const tokenPayload = {
-      userId: user.id,
+      id: user.id,
       email: user.email,
       role: user.role as 'customer' | 'admin' | 'support'
     };

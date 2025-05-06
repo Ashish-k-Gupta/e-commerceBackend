@@ -1,8 +1,9 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Cart } from "./cartEntity";
 import { Order } from "./orderEntity";
 import { OrderItem } from "./orderItemEntity";
 import { CartItem } from "./cartItemEntity";
+import { User } from "./userEntity";
 
 @Entity()
 export class Product{
@@ -23,6 +24,9 @@ export class Product{
 
     @Column({nullable: true})
     imageUrl?: string
+
+    @ManyToOne(() => User, {nullable: false})
+    createdBy!: User;
     
     @CreateDateColumn()
     createdAt!: Date;

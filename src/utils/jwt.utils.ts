@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken'
 import { JwtPayload } from '../dtos/token.dto'
-import { LoginPayload } from '../dtos/auth.dto';
 
 const SECRET_KEY = process.env.JWT_SECRET_KEY as string;
 

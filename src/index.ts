@@ -5,6 +5,7 @@ import authRoutes from './routes/auth.route'
 import authMiddleware from './middlewares/authMiddleware'
 import addressRouter from './routes/address.route'
 import userRouter from './routes/user.route'
+import productRouter from './routes/product.route'
 
 dotenv.config()
 
@@ -16,14 +17,17 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
 // Routes
+app.get('/', (req:Request, res: Response) =>{
+    res.status(200).json("Hello, world");
+})
+
+
 app.use('/api/auth', authRoutes)
 app.use('/orders', authMiddleware, )
 app.use('/api/addresses', addressRouter)
 app.use('/', userRouter)
-app.get('/', (req:Request, res: Response) =>{
-    res.status(200).json("Hello, world");
+app.use('/api/product', productRouter)
 
-})
 AppDataSource.initialize()
 .then(() => {
       console.log('Connected to database');
