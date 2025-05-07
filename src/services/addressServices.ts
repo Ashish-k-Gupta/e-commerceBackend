@@ -13,7 +13,7 @@ export const createAddressService = async (userId: string , payload: CreateAddre
         throw new Error("User not found");
     }
 
-    const address = addressRepo.create({...payload, user: user});
+    const address = addressRepo.create({...payload, user});
 
     return addressRepo.save(address)
    

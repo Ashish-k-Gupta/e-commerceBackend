@@ -1,7 +1,10 @@
 import { Request } from "express";
 
-export interface RequestWithUser extends Request{
-    user: {
-        userId: string
+declare module 'express'{
+    interface Request{
+        user?:{
+            id: string;
+            role: string;
+        }
     }
 }

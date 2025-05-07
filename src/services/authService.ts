@@ -1,4 +1,4 @@
-import { error } from "console";
+import { promises } from "dns";
 import { AppDataSource } from "../config/data-source";
 import { LoginPayload, RegisterPayload } from "../dtos/auth.dto";
 import { User } from "../entities/userEntity";
@@ -53,3 +53,14 @@ export const loginUserService = async (payload: LoginPayload): Promise<string> =
   
     return jwtUtils.jwtSign(tokenPayload);
   };
+
+  export const updateUserService = async(userId: string, payload: User):Promise<User> =>{
+    const updatedUser = await userRepo.findOne({
+      where: {id: userId}
+    })
+    if(!updatedUser){
+      throw new Error('User not found');
+    }
+    Object.assign(updatedUser, payload)
+    return userRepo.save(updatedUser)
+  }
