@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction} from "express";
-import { createAddressService, getAddressesService, deleteAddressService, updateAddressService, getAddressByIdService } from "../services/addressServices";
+import { createAddressService, getAddressesService, deleteAddressService, updateAddressService, getAddressByIdService } from "../services/addressService";
 
 
 export const createAddress = async(req: Request, res: Response, next: NextFunction) =>{

@@ -1,0 +1,43 @@
+"filename", "language", "JSON with Comments", "Markdown", "JSON", "TypeScript", "comment", "blank", "total"
+"e:\Ashish\Home projects\e-commerceBackend\package-lock.json", "JSON", 0, 0, 3223, 0, 0, 1, 3224
+"e:\Ashish\Home projects\e-commerceBackend\package.json", "JSON", 0, 0, 42, 0, 0, 1, 43
+"e:\Ashish\Home projects\e-commerceBackend\src\config\data-source.ts", "TypeScript", 0, 0, 0, 24, 0, 3, 27
+"e:\Ashish\Home projects\e-commerceBackend\src\controllers\address.controller.ts", "TypeScript", 0, 0, 0, 57, 0, 14, 71
+"e:\Ashish\Home projects\e-commerceBackend\src\controllers\auth.controller.ts", "TypeScript", 0, 0, 0, 14, 0, 2, 16
+"e:\Ashish\Home projects\e-commerceBackend\src\controllers\cart.controller.ts", "TypeScript", 0, 0, 0, 0, 0, 1, 1
+"e:\Ashish\Home projects\e-commerceBackend\src\controllers\product.controller.ts", "TypeScript", 0, 0, 0, 39, 0, 5, 44
+"e:\Ashish\Home projects\e-commerceBackend\src\controllers\user.controller.ts", "TypeScript", 0, 0, 0, 54, 0, 6, 60
+"e:\Ashish\Home projects\e-commerceBackend\src\dtos\address.dto.ts", "TypeScript", 0, 0, 0, 14, 0, 1, 15
+"e:\Ashish\Home projects\e-commerceBackend\src\dtos\auth.dto.ts", "TypeScript", 0, 0, 0, 12, 0, 1, 13
+"e:\Ashish\Home projects\e-commerceBackend\src\dtos\cart.dto.ts", "TypeScript", 0, 0, 0, 8, 0, 1, 9
+"e:\Ashish\Home projects\e-commerceBackend\src\dtos\product.dto.ts", "TypeScript", 0, 0, 0, 14, 0, 0, 14
+"e:\Ashish\Home projects\e-commerceBackend\src\dtos\token.dto.ts", "TypeScript", 0, 0, 0, 5, 0, 0, 5
+"e:\Ashish\Home projects\e-commerceBackend\src\dtos\user.dto.ts", "TypeScript", 0, 0, 0, 16, 0, 1, 17
+"e:\Ashish\Home projects\e-commerceBackend\src\entities\addressEntity.ts", "TypeScript", 0, 0, 0, 34, 0, 12, 46
+"e:\Ashish\Home projects\e-commerceBackend\src\entities\cartEntity.ts", "TypeScript", 0, 0, 0, 18, 0, 4, 22
+"e:\Ashish\Home projects\e-commerceBackend\src\entities\cartItemEntity.ts", "TypeScript", 0, 0, 0, 17, 0, 6, 23
+"e:\Ashish\Home projects\e-commerceBackend\src\entities\orderEntity.ts", "TypeScript", 0, 0, 0, 28, 0, 10, 38
+"e:\Ashish\Home projects\e-commerceBackend\src\entities\orderItemEntity.ts", "TypeScript", 0, 0, 0, 16, 0, 5, 21
+"e:\Ashish\Home projects\e-commerceBackend\src\entities\productEntity.ts", "TypeScript", 0, 0, 0, 31, 0, 11, 42
+"e:\Ashish\Home projects\e-commerceBackend\src\entities\userEntity.ts", "TypeScript", 0, 0, 0, 39, 0, 16, 55
+"e:\Ashish\Home projects\e-commerceBackend\src\index.ts", "TypeScript", 0, 0, 0, 36, 1, 12, 49
+"e:\Ashish\Home projects\e-commerceBackend\src\middlewares\authMiddleware.ts", "TypeScript", 0, 0, 0, 19, 0, 4, 23
+"e:\Ashish\Home projects\e-commerceBackend\src\middlewares\isAdmin.ts", "TypeScript", 0, 0, 0, 8, 0, 1, 9
+"e:\Ashish\Home projects\e-commerceBackend\src\migrations\20230505000000-CreateAdminUser.ts", "TypeScript", 0, 0, 0, 22, 0, 5, 27
+"e:\Ashish\Home projects\e-commerceBackend\src\routes\address.route.ts", "TypeScript", 0, 0, 0, 10, 0, 3, 13
+"e:\Ashish\Home projects\e-commerceBackend\src\routes\auth.route.ts", "TypeScript", 0, 0, 0, 5, 0, 3, 8
+"e:\Ashish\Home projects\e-commerceBackend\src\routes\cart.route.ts", "TypeScript", 0, 0, 0, 0, 0, 1, 1
+"e:\Ashish\Home projects\e-commerceBackend\src\routes\product.route.ts", "TypeScript", 0, 0, 0, 10, 0, 2, 12
+"e:\Ashish\Home projects\e-commerceBackend\src\routes\user.route.ts", "TypeScript", 0, 0, 0, 10, 0, 3, 13
+"e:\Ashish\Home projects\e-commerceBackend\src\seeds\admin.seed.ts", "TypeScript", 0, 0, 0, 0, 24, 3, 27
+"e:\Ashish\Home projects\e-commerceBackend\src\services\addressService.ts", "TypeScript", 0, 0, 0, 57, 0, 18, 75
+"e:\Ashish\Home projects\e-commerceBackend\src\services\authService.ts", "TypeScript", 0, 0, 0, 22, 0, 7, 29
+"e:\Ashish\Home projects\e-commerceBackend\src\services\cartService.ts", "TypeScript", 0, 0, 0, 61, 0, 11, 72
+"e:\Ashish\Home projects\e-commerceBackend\src\services\productServices.ts", "TypeScript", 0, 0, 0, 51, 0, 6, 57
+"e:\Ashish\Home projects\e-commerceBackend\src\services\userService.ts", "TypeScript", 0, 0, 0, 75, 0, 12, 87
+"e:\Ashish\Home projects\e-commerceBackend\src\types\express\index.d.ts", "TypeScript", 0, 0, 0, 14, 0, 2, 16
+"e:\Ashish\Home projects\e-commerceBackend\src\utils\hash.util.ts", "TypeScript", 0, 0, 0, 10, 0, 2, 12
+"e:\Ashish\Home projects\e-commerceBackend\src\utils\jwt.utils.ts", "TypeScript", 0, 0, 0, 18, 0, 4, 22
+"e:\Ashish\Home projects\e-commerceBackend\task.md", "Markdown", 0, 8, 0, 0, 0, 1, 9
+"e:\Ashish\Home projects\e-commerceBackend\tsconfig.json", "JSON with Comments", 18, 0, 0, 0, 0, 1, 19
+"Total", "-", 18, 8, 3265, 868, 25, 202, 4386

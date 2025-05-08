@@ -1,5 +1,5 @@
 import { AppDataSource } from "../config/data-source";
-import { addProduct } from "../dtos/product.dto";
+import { addProduct, updateProduct } from "../dtos/product.dto";
 import { Product } from "../entities/productEntity";
 import { User } from "../entities/userEntity";
 
@@ -16,5 +16,42 @@ export const addProductService = async (userId: string, productData: addProduct)
         ...productData,
         createdBy: user
     })
+    return productRepo.save(product)
+}
+
+export const getProductService = async():Promise<Product[]> =>{
+    const products = await productRepo.find({
+        select: {
+            id: true,
+            name: true,
+            price: true,
+            stock: true,
+            imageUrl: true,
+        }
+    })
+    return products;
+}
+
+export const deleteProductService = async(productId: string): Promise<void> =>{
+    const product = await productRepo.findOne({
+        where:{
+            id: productId
+        }
+    })
+    if(!product){
+        throw new Error ("Product not found")
+    }
+
+    await productRepo.remove(product)
+}
+
+export const updateProductService = async(productId: string, payload: updateProduct): Promise<Product> =>{
+    const product = await productRepo.findOne({where:{
+        id: productId
+    }})
+    if(!product){
+        throw new Error('Product not found')
+    }
+    Object.assign(product, payload)
     return productRepo.save(product)
 }

@@ -1,4 +1,5 @@
 import express, {Request, Response} from 'express'
+import cors from 'cors';
 import dotenv from 'dotenv'
 import { AppDataSource } from './config/data-source'
 import authRoutes from './routes/auth.route'
@@ -10,6 +11,10 @@ import productRouter from './routes/product.route'
 dotenv.config()
 
 const app = express()
+app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true 
+  }));
 const PORT = process.env.PORT || 5000;
 
 
@@ -23,7 +28,7 @@ app.get('/', (req:Request, res: Response) =>{
 
 
 app.use('/api/auth', authRoutes)
-app.use('/orders', authMiddleware, )
+app.use('/orders', authMiddleware)
 app.use('/api/addresses', addressRouter)
 app.use('/', userRouter)
 app.use('/api/product', productRouter)
