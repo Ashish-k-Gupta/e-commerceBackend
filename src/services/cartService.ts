@@ -32,8 +32,10 @@ export const addItemToCartService = async (
   const product = await productRepo.findOneByOrFail({ id: productId });
 
   if (product.stock <= 0) {
-    throw new Error(`Product "${product.name}" is out of stock and cannot be added to the cart.`);
-}
+    throw new Error(
+      `Product "${product.name}" is out of stock and cannot be added to the cart.`,
+    );
+  }
 
   const existingItem = cart.cartItems.find(
     (item) => item.product.id === productId,
@@ -66,15 +68,21 @@ export const updatedCartItemQuanityService = async (
   userId: string,
   productId: string,
   quantity: number,
-  price: number,
+  //   price: number,
 ): Promise<Cart> => {
   const cart = await getOrCreateCartService(userId);
-  const item = cart.cartItems.find((item) => item.product.id === productId);
+  const itemIndex = cart.cartItems.findIndex(
+    (item) => item.product.id === productId,
+  );
 
-  if (!item) {
-    throw new Error("item not found in cart");
+  const item = cart.cartItems[itemIndex];
+  if (itemIndex === -1) {
+    throw new Error(
+      `Item with productId ${productId} not found in cart for user ${userId}`,
+    );
   }
   if (quantity <= 0) {
+    cart.cartItems.splice(itemIndex, 1);
     await cartItemRepo.remove(item);
   } else {
     item.quantity = quantity;

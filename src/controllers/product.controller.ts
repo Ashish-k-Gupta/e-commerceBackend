@@ -17,12 +17,10 @@ export const addProduct = async (
     const product = await addProductService(userId, req.body);
     res.status(201).json({ message: "Product created successfully", product });
   } catch (err) {
-    res
-      .status(400)
-      .json({
-        message: "Could not add product",
-        error: err instanceof Error ? err.message : "Unknown error",
-      });
+    res.status(400).json({
+      message: "Could not add product",
+      error: err instanceof Error ? err.message : "Unknown error",
+    });
   }
 };
 
@@ -35,12 +33,10 @@ export const getProducts = async (
     const allProducts = await getProductService();
     res.status(200).json({ allProducts });
   } catch (err) {
-    res
-      .status(400)
-      .json({
-        message: "Could fetch the request",
-        error: err instanceof Error ? err.message : "Unknown error",
-      });
+    res.status(400).json({
+      message: "Could fetch the request",
+      error: err instanceof Error ? err.message : "Unknown error",
+    });
   }
 };
 
@@ -56,12 +52,10 @@ export const deleteProduct = async (
       .status(200)
       .json({ message: `Product with ${productId} deleted successfully` });
   } catch (err) {
-    res
-      .status(400)
-      .json({
-        message: "Failed to delete product",
-        error: err instanceof Error ? err.message : "Unknown error",
-      });
+    res.status(400).json({
+      message: "Failed to delete product",
+      error: err instanceof Error ? err.message : "Unknown error",
+    });
   }
 };
 
@@ -74,18 +68,14 @@ export const updateProduct = async (
     const productId = req?.params?.id;
     const payloadBody = req.body;
     const updateProduct = await updateProductService(productId, payloadBody);
-    res
-      .status(200)
-      .json({
-        message: "Product updated successfully",
-        product: updateProduct,
-      });
+    res.status(200).json({
+      message: "Product updated successfully",
+      product: updateProduct,
+    });
   } catch (err) {
-    res
-      .status(400)
-      .json({
-        message: "Failed to udpated product",
-        error: err instanceof Error ? err.message : "Unknown error",
-      });
+    res.status(400).json({
+      message: "Failed to udpated product",
+      error: err instanceof Error ? err.message : "Unknown error",
+    });
   }
 };
