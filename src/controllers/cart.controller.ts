@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import {
   addItemToCartService,
+  clearCartService,
   getOrCreateCartService,
   updatedCartItemQuanityService,
 } from "../services/cartService";
@@ -100,6 +101,16 @@ export const updatedCartItemQuanity = async (
       });
   }
 };
+
+export const clearCart = async(req: Request, res: Response, next: NextFunction) =>{
+    try{
+        const userId = req?.user?.id;
+        await clearCartService(userId)
+        res.status(200).json({message: 'You cart has been cleared'})
+    }catch(err){
+        res.status(400).json({message: "Couldn't clear the cart", error: err instanceof Error? err.message : "Unknown error"})
+    }
+}
 
 // export const addItemToCart = async(req: Request, res: Response, next: NextFunction) =>{
 //     try{
