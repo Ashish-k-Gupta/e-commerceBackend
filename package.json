@@ -22,7 +22,8 @@
     "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run -d src/config/data-source.ts",
     "migration:revert": "ts-node ./node_modules/typeorm/cli.js migration:revert -d src/config/data-source.ts",
     "migration:generate": "ts-node ./node_modules/typeorm/cli.js migration:generate -d src/config/data-source.ts -n",
-    "migration:create": "ts-node ./node_modules/typeorm/cli.js migration:create src/migrations/NewMigration"
+    "migration:create": "ts-node ./node_modules/typeorm/cli.js migration:create src/migrations/NewMigration",
+    "format": "prettier --write ."
   },
   "keywords": [],
   "author": "",
@@ -35,6 +36,7 @@
     "@types/jsonwebtoken": "^9.0.9",
     "@types/node": "^22.14.1",
     "nodemon": "^3.1.9",
+    "prettier": "^3.5.3",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.8.3"

@@ -3,19 +3,19 @@ import { Order } from "./orderEntity";
 import { Product } from "./productEntity";
 
 @Entity()
-export class OrderItem{
-    @PrimaryGeneratedColumn('uuid')
-    id!: string
+export class OrderItem {
+  @PrimaryGeneratedColumn("uuid")
+  id!: string;
 
-    @ManyToOne(() => Order, (order) => order.orderItems)
-    order!: Order
+  @ManyToOne(() => Order, (order) => order.orderItems)
+  order!: Order;
 
-    @ManyToOne(()=> Product, (product) => product.orderItems)
-    product!: Product
+  @ManyToOne(() => Product, (product) => product.orderItems)
+  product!: Product;
 
-    @Column()
-    quantity!: number;
+  @Column()
+  quantity!: number;
 
-    @Column({type: 'decimal', precision: 10, scale: 2})
-    price!: number
+  @Column({ type: "decimal", precision: 10, scale: 2 })
+  price!: number;
 }

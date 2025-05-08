@@ -9,7 +9,7 @@
 //     const existingAdmin = await userRepo.findOne({
 //         where: {email: adminEmail}
 //     })
-    
+
 //     if(!existingAdmin){
 //         const adminUser = userRepo.create({
 //             email: adminEmail,

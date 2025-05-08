@@ -1,7 +1,12 @@
 import { Router } from "express";
-import { createAddress, deleteAddress, getAddressById, getAddresses, updateAddress } from "../controllers/address.controller";
+import {
+  createAddress,
+  deleteAddress,
+  getAddressById,
+  getAddresses,
+  updateAddress,
+} from "../controllers/address.controller";
 import authMiddleware from "../middlewares/authMiddleware";
-
 
 const addressRouter = Router();
 addressRouter.post("/", authMiddleware, createAddress);

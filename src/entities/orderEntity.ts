@@ -1,38 +1,46 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from "typeorm";
 import { User } from "./userEntity";
 import { OrderItem } from "./orderItemEntity";
 
 @Entity()
 export class Order {
-    @PrimaryGeneratedColumn('uuid')
-    id!: string
+  @PrimaryGeneratedColumn("uuid")
+  id!: string;
 
-    @ManyToOne(() => User, (user) => user.orders, {
-        onDelete: 'CASCADE'
-    })
-    user!: User
+  @ManyToOne(() => User, (user) => user.orders, {
+    onDelete: "CASCADE",
+  })
+  user!: User;
 
-    @Column()
-    status!: 'pending' | 'paid' | 'shipped' | 'delivered' | 'cancelled';
+  @Column()
+  status!: "pending" | "paid" | "shipped" | "delivered" | "cancelled";
 
-    @Column({ type: 'decimal', precision: 10, scale: 2 })
-    totalAmount!: number;
+  @Column({ type: "decimal", precision: 10, scale: 2 })
+  totalAmount!: number;
 
-    @Column()
-    paymentMethod!: string;
+  @Column()
+  paymentMethod!: string;
 
-    @CreateDateColumn()
-    createdAt!: Date;
+  @CreateDateColumn()
+  createdAt!: Date;
 
-    @UpdateDateColumn()
-    updatedAt!: Date;
+  @UpdateDateColumn()
+  updatedAt!: Date;
 
-    @DeleteDateColumn()
-    deletedAt?: Date;
+  @DeleteDateColumn()
+  deletedAt?: Date;
 
-    @OneToMany(() => OrderItem, (orderItem) => orderItem.order,{
-        cascade: true
-    })
-    orderItems!: OrderItem[];
-
+  @OneToMany(() => OrderItem, (orderItem) => orderItem.order, {
+    cascade: true,
+  })
+  orderItems!: OrderItem[];
 }

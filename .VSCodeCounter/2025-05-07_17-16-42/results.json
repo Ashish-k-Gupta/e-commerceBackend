@@ -1,1 +1,248 @@
-{"file:///e%3A/Ashish/Home%20projects/e-commerceBackend/tsconfig.json":{"language":"JSON with Comments","code":18,"comment":0,"blank":1},"file:///e%3A/Ashish/Home%20projects/e-commerceBackend/task.md":{"language":"Markdown","code":8,"comment":0,"blank":1},"file:///e%3A/Ashish/Home%20projects/e-commerceBackend/package.json":{"language":"JSON","code":42,"comment":0,"blank":1},"file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/utils/jwt.utils.ts":{"language":"TypeScript","code":18,"comment":0,"blank":4},"file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/utils/hash.util.ts":{"language":"TypeScript","code":10,"comment":0,"blank":2},"file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/migrations/20230505000000-CreateAdminUser.ts":{"language":"TypeScript","code":22,"comment":0,"blank":5},"file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/services/addressService.ts":{"language":"TypeScript","code":57,"comment":0,"blank":18},"file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/seeds/admin.seed.ts":{"language":"TypeScript","code":0,"comment":24,"blank":3},"file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/types/express/index.d.ts":{"language":"TypeScript","code":14,"comment":0,"blank":2},"file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/index.ts":{"language":"TypeScript","code":36,"comment":1,"blank":12},"file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/services/userService.ts":{"language":"TypeScript","code":75,"comment":0,"blank":12},"file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/routes/product.route.ts":{"language":"TypeScript","code":10,"comment":0,"blank":2},"file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/services/productServices.ts":{"language":"TypeScript","code":51,"comment":0,"blank":6},"file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/routes/cart.route.ts":{"language":"TypeScript","code":0,"comment":0,"blank":1},"file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/services/cartService.ts":{"language":"TypeScript","code":61,"comment":0,"blank":11},"file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/routes/auth.route.ts":{"language":"TypeScript","code":5,"comment":0,"blank":3},"file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/services/authService.ts":{"language":"TypeScript","code":22,"comment":0,"blank":7},"file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/routes/user.route.ts":{"language":"TypeScript","code":10,"comment":0,"blank":3},"file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/routes/address.route.ts":{"language":"TypeScript","code":10,"comment":0,"blank":3},"file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/entities/cartEntity.ts":{"language":"TypeScript","code":18,"comment":0,"blank":4},"file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/entities/orderEntity.ts":{"language":"TypeScript","code":28,"comment":0,"blank":10},"file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/entities/cartItemEntity.ts":{"language":"TypeScript","code":17,"comment":0,"blank":6},"file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/entities/orderItemEntity.ts":{"language":"TypeScript","code":16,"comment":0,"blank":5},"file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/entities/addressEntity.ts":{"language":"TypeScript","code":34,"comment":0,"blank":12},"file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/middlewares/isAdmin.ts":{"language":"TypeScript","code":8,"comment":0,"blank":1},"file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/entities/userEntity.ts":{"language":"TypeScript","code":39,"comment":0,"blank":16},"file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/entities/productEntity.ts":{"language":"TypeScript","code":31,"comment":0,"blank":11},"file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/dtos/address.dto.ts":{"language":"TypeScript","code":14,"comment":0,"blank":1},"file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/dtos/product.dto.ts":{"language":"TypeScript","code":14,"comment":0,"blank":0},"file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/controllers/address.controller.ts":{"language":"TypeScript","code":57,"comment":0,"blank":14},"file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/dtos/cart.dto.ts":{"language":"TypeScript","code":8,"comment":0,"blank":1},"file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/dtos/user.dto.ts":{"language":"TypeScript","code":16,"comment":0,"blank":1},"file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/dtos/auth.dto.ts":{"language":"TypeScript","code":12,"comment":0,"blank":1},"file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/config/data-source.ts":{"language":"TypeScript","code":24,"comment":0,"blank":3},"file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/controllers/user.controller.ts":{"language":"TypeScript","code":54,"comment":0,"blank":6},"file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/controllers/cart.controller.ts":{"language":"TypeScript","code":0,"comment":0,"blank":1},"file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/controllers/product.controller.ts":{"language":"TypeScript","code":39,"comment":0,"blank":5},"file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/controllers/auth.controller.ts":{"language":"TypeScript","code":14,"comment":0,"blank":2},"file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/dtos/token.dto.ts":{"language":"TypeScript","code":5,"comment":0,"blank":0},"file:///e%3A/Ashish/Home%20projects/e-commerceBackend/package-lock.json":{"language":"JSON","code":3223,"comment":0,"blank":1},"file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/middlewares/authMiddleware.ts":{"language":"TypeScript","code":19,"comment":0,"blank":4}}
+{
+  "file:///e%3A/Ashish/Home%20projects/e-commerceBackend/tsconfig.json": {
+    "language": "JSON with Comments",
+    "code": 18,
+    "comment": 0,
+    "blank": 1
+  },
+  "file:///e%3A/Ashish/Home%20projects/e-commerceBackend/task.md": {
+    "language": "Markdown",
+    "code": 8,
+    "comment": 0,
+    "blank": 1
+  },
+  "file:///e%3A/Ashish/Home%20projects/e-commerceBackend/package.json": {
+    "language": "JSON",
+    "code": 42,
+    "comment": 0,
+    "blank": 1
+  },
+  "file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/utils/jwt.utils.ts": {
+    "language": "TypeScript",
+    "code": 18,
+    "comment": 0,
+    "blank": 4
+  },
+  "file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/utils/hash.util.ts": {
+    "language": "TypeScript",
+    "code": 10,
+    "comment": 0,
+    "blank": 2
+  },
+  "file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/migrations/20230505000000-CreateAdminUser.ts": {
+    "language": "TypeScript",
+    "code": 22,
+    "comment": 0,
+    "blank": 5
+  },
+  "file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/services/addressService.ts": {
+    "language": "TypeScript",
+    "code": 57,
+    "comment": 0,
+    "blank": 18
+  },
+  "file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/seeds/admin.seed.ts": {
+    "language": "TypeScript",
+    "code": 0,
+    "comment": 24,
+    "blank": 3
+  },
+  "file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/types/express/index.d.ts": {
+    "language": "TypeScript",
+    "code": 14,
+    "comment": 0,
+    "blank": 2
+  },
+  "file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/index.ts": {
+    "language": "TypeScript",
+    "code": 36,
+    "comment": 1,
+    "blank": 12
+  },
+  "file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/services/userService.ts": {
+    "language": "TypeScript",
+    "code": 75,
+    "comment": 0,
+    "blank": 12
+  },
+  "file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/routes/product.route.ts": {
+    "language": "TypeScript",
+    "code": 10,
+    "comment": 0,
+    "blank": 2
+  },
+  "file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/services/productServices.ts": {
+    "language": "TypeScript",
+    "code": 51,
+    "comment": 0,
+    "blank": 6
+  },
+  "file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/routes/cart.route.ts": {
+    "language": "TypeScript",
+    "code": 0,
+    "comment": 0,
+    "blank": 1
+  },
+  "file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/services/cartService.ts": {
+    "language": "TypeScript",
+    "code": 61,
+    "comment": 0,
+    "blank": 11
+  },
+  "file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/routes/auth.route.ts": {
+    "language": "TypeScript",
+    "code": 5,
+    "comment": 0,
+    "blank": 3
+  },
+  "file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/services/authService.ts": {
+    "language": "TypeScript",
+    "code": 22,
+    "comment": 0,
+    "blank": 7
+  },
+  "file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/routes/user.route.ts": {
+    "language": "TypeScript",
+    "code": 10,
+    "comment": 0,
+    "blank": 3
+  },
+  "file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/routes/address.route.ts": {
+    "language": "TypeScript",
+    "code": 10,
+    "comment": 0,
+    "blank": 3
+  },
+  "file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/entities/cartEntity.ts": {
+    "language": "TypeScript",
+    "code": 18,
+    "comment": 0,
+    "blank": 4
+  },
+  "file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/entities/orderEntity.ts": {
+    "language": "TypeScript",
+    "code": 28,
+    "comment": 0,
+    "blank": 10
+  },
+  "file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/entities/cartItemEntity.ts": {
+    "language": "TypeScript",
+    "code": 17,
+    "comment": 0,
+    "blank": 6
+  },
+  "file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/entities/orderItemEntity.ts": {
+    "language": "TypeScript",
+    "code": 16,
+    "comment": 0,
+    "blank": 5
+  },
+  "file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/entities/addressEntity.ts": {
+    "language": "TypeScript",
+    "code": 34,
+    "comment": 0,
+    "blank": 12
+  },
+  "file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/middlewares/isAdmin.ts": {
+    "language": "TypeScript",
+    "code": 8,
+    "comment": 0,
+    "blank": 1
+  },
+  "file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/entities/userEntity.ts": {
+    "language": "TypeScript",
+    "code": 39,
+    "comment": 0,
+    "blank": 16
+  },
+  "file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/entities/productEntity.ts": {
+    "language": "TypeScript",
+    "code": 31,
+    "comment": 0,
+    "blank": 11
+  },
+  "file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/dtos/address.dto.ts": {
+    "language": "TypeScript",
+    "code": 14,
+    "comment": 0,
+    "blank": 1
+  },
+  "file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/dtos/product.dto.ts": {
+    "language": "TypeScript",
+    "code": 14,
+    "comment": 0,
+    "blank": 0
+  },
+  "file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/controllers/address.controller.ts": {
+    "language": "TypeScript",
+    "code": 57,
+    "comment": 0,
+    "blank": 14
+  },
+  "file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/dtos/cart.dto.ts": {
+    "language": "TypeScript",
+    "code": 8,
+    "comment": 0,
+    "blank": 1
+  },
+  "file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/dtos/user.dto.ts": {
+    "language": "TypeScript",
+    "code": 16,
+    "comment": 0,
+    "blank": 1
+  },
+  "file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/dtos/auth.dto.ts": {
+    "language": "TypeScript",
+    "code": 12,
+    "comment": 0,
+    "blank": 1
+  },
+  "file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/config/data-source.ts": {
+    "language": "TypeScript",
+    "code": 24,
+    "comment": 0,
+    "blank": 3
+  },
+  "file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/controllers/user.controller.ts": {
+    "language": "TypeScript",
+    "code": 54,
+    "comment": 0,
+    "blank": 6
+  },
+  "file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/controllers/cart.controller.ts": {
+    "language": "TypeScript",
+    "code": 0,
+    "comment": 0,
+    "blank": 1
+  },
+  "file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/controllers/product.controller.ts": {
+    "language": "TypeScript",
+    "code": 39,
+    "comment": 0,
+    "blank": 5
+  },
+  "file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/controllers/auth.controller.ts": {
+    "language": "TypeScript",
+    "code": 14,
+    "comment": 0,
+    "blank": 2
+  },
+  "file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/dtos/token.dto.ts": {
+    "language": "TypeScript",
+    "code": 5,
+    "comment": 0,
+    "blank": 0
+  },
+  "file:///e%3A/Ashish/Home%20projects/e-commerceBackend/package-lock.json": {
+    "language": "JSON",
+    "code": 3223,
+    "comment": 0,
+    "blank": 1
+  },
+  "file:///e%3A/Ashish/Home%20projects/e-commerceBackend/src/middlewares/authMiddleware.ts": {
+    "language": "TypeScript",
+    "code": 19,
+    "comment": 0,
+    "blank": 4
+  }
+}

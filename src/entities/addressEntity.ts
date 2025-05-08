@@ -3,44 +3,41 @@ import { User } from "./userEntity";
 import { IsIn, IsNotEmpty, IsOptional, IsString } from "class-validator";
 
 @Entity()
-export class Address{
-    @PrimaryGeneratedColumn('uuid')
-    id!: string
+export class Address {
+  @PrimaryGeneratedColumn("uuid")
+  id!: string;
 
-    @Column()
-    @IsString()
-    street!: string;
-    
-    @Column()
-    @IsString()
-    zipCode!: string;
+  @Column()
+  @IsString()
+  street!: string;
 
-    @Column()
-    @IsString()
-    city!: string;
+  @Column()
+  @IsString()
+  zipCode!: string;
 
-    @Column()
-    @IsString()
-    state!: string;
-    
-    @Column()
-    @IsString()
-    country!: string;
+  @Column()
+  @IsString()
+  city!: string;
 
-    @Column()
-    @IsNotEmpty()
-    @IsIn(["Home", "Office", "Other"])
-    label!: string //Home,Office
+  @Column()
+  @IsString()
+  state!: string;
 
-    @IsOptional()
-    @Column({type:'boolean' ,default:false})
-    isDefault!: boolean;
+  @Column()
+  @IsString()
+  country!: string;
 
-    @ManyToOne(() => User, (user) => user.addresses,{
-        onDelete:'CASCADE'
-    } )
-    user!: User
+  @Column()
+  @IsNotEmpty()
+  @IsIn(["Home", "Office", "Other"])
+  label!: string; //Home,Office
 
-    
+  @IsOptional()
+  @Column({ type: "boolean", default: false })
+  isDefault!: boolean;
 
+  @ManyToOne(() => User, (user) => user.addresses, {
+    onDelete: "CASCADE",
+  })
+  user!: User;
 }
