@@ -6,3 +6,11 @@
 - [ ] Order checkout flow
 - [ ] Order history
 - [ ] Admin order management
+
+
+<!-- May-9-2025 -->
+## [ ] Admin Order Management
+
+- [ ] Soft delete an order (`deleteOrder(orderId)`) — Admin/User*
+- [ ] List all orders in the system (`getAllOrders()`) — Admin
+- [ ] Aggregate analytics (`getOrderSummary()`) — Admin *(optional)*
