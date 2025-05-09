@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { createOrderFromCartService } from "../services/createOrderFromCart";
 import { error } from "console";
+import { PaymentMethod } from "../entities/orderEntity";
 
 export const createOrderFromCartController = async (
   req: Request,
@@ -15,7 +16,11 @@ export const createOrderFromCartController = async (
       return;
     }
 
-    const order = await createOrderFromCartService(userId, paymentMethod);
+      if (!Object.values(PaymentMethod).includes(paymentMethod)) {
+        throw new Error("Invalid payment method");
+      }
+
+    const order = await createOrderFromCartService(userId, paymentMethod as PaymentMethod);
 
     res.status(201).json({ message: "Order created successfully.", order });
   } catch (err) {

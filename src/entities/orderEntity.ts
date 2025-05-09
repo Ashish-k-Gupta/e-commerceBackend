@@ -11,8 +11,18 @@ import {
 import { User } from "./userEntity";
 import { OrderItem } from "./orderItemEntity";
 
+
+export enum PaymentMethod {
+  CREDIT_CARD = "Credit Card",
+  DEBIT_CARD = "Debit Card",
+  BANK_TRANSFER = "Bank Transfer",
+  COD = "COD",
+  UPI = "UPI"
+}
+
 @Entity()
 export class Order {
+
   @PrimaryGeneratedColumn("uuid")
   id!: string;
 
@@ -27,11 +37,11 @@ export class Order {
   @Column({ type: "decimal", precision: 10, scale: 2 })
   totalAmount!: number;
 
-  @Column()
-  paymentMethod!: string;
-
-  @CreateDateColumn()
-  createdAt!: Date;
+  @Column({
+    type: "enum",
+    enum: PaymentMethod
+  })
+  paymentMethod!: PaymentMethod;
 
   @UpdateDateColumn()
   updatedAt!: Date;

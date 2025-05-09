@@ -1,7 +1,7 @@
 import { AppDataSource } from "../config/data-source";
 import { Cart } from "../entities/cartEntity";
 import { CartItem } from "../entities/cartItemEntity";
-import { Order } from "../entities/orderEntity";
+import { Order, PaymentMethod } from "../entities/orderEntity";
 import { OrderItem } from "../entities/orderItemEntity";
 import { Product } from "../entities/productEntity";
 import { User } from "../entities/userEntity";
@@ -15,8 +15,9 @@ const OrderItemRepo = AppDataSource.getRepository(OrderItem);
 
 export const createOrderFromCartService = async (
   userId: string,
-  paymentMethod: string,
+  paymentMethod: PaymentMethod,
 ): Promise<Order> => {
+
   const user = await userRepo.findOneByOrFail({ id: userId });
   const cart = await cartRepo.findOne({
     where: { user: { id: userId } },
