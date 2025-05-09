@@ -1,7 +1,7 @@
 import { AppDataSource } from "../config/data-source";
 import { Cart } from "../entities/cartEntity";
 import { CartItem } from "../entities/cartItemEntity";
-import { Order, PaymentMethod } from "../entities/orderEntity";
+import { Order, OrderStatus, PaymentMethod } from "../entities/orderEntity";
 import { OrderItem } from "../entities/orderItemEntity";
 import { Product } from "../entities/productEntity";
 import { User } from "../entities/userEntity";
@@ -47,7 +47,7 @@ export const createOrderFromCartService = async (
       quantity: cartItem.quantity,
       price: cartItem.price,
     });
-
+    await OrderItemRepo.save(orderItems);
     totalAmount += cartItem.quantity * parseFloat(cartItem.price.toString());
 
     orderItems.push(orderItem);
@@ -58,9 +58,70 @@ export const createOrderFromCartService = async (
     orderItems,
     totalAmount,
     paymentMethod,
-    status: "pending",
-  });
-
+    status: OrderStatus.PENDING
+  })
+  await orderRepo.save(order)
   await cartItemRepo.remove(cart.cartItems);
   return order;
 };
+
+export const getOrdersForUserService = async(userId: string):Promise<Order[]> =>{
+  const orders =  await orderRepo.find({where:{user: {id: userId}},
+  relations: ["orderItems", "orderItems.product"]})
+  return orders
+}
+
+export const getOrderByIdService = async(userId: string, orderId: string): Promise<Order>=>{
+  const order  = await orderRepo.findOne({
+    where: {
+      id: orderId,
+      user:{
+        id: userId,
+      },
+    },
+    relations: ['user', 'orderItems', 'orderItems.product'],
+    select:{
+      id: true,
+      status: true,
+      totalAmount: true,
+      paymentMethod: true,
+      user:{
+        firstName: true,
+        phoneNumber: true
+      },
+      orderItems:{
+        id: true,
+        quantity: true,
+        price:true,
+        product:{
+          id: true,
+          name: true,
+          description: true,
+          price: true,
+          imageUrl: true,
+        }
+      }
+    }
+
+  })
+
+ if(!order){
+  throw new Error("Order not found")
+ }
+ return order
+}
+
+export const updateOrderStatusService = async(userId: string, orderId: string, status: OrderStatus ):Promise<Order> =>{
+  const order = await orderRepo.findOne({
+    where:{
+      id: orderId,
+      user: {id: userId}
+    },
+    relations: ['user']
+  })
+if(!order){
+  throw new Error (`Order with ${orderId} doesn't exist`)
+}
+  order.status = status;
+  return await orderRepo.save(order)
+}

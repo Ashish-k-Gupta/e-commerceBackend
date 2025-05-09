@@ -20,6 +20,14 @@ export enum PaymentMethod {
   UPI = "UPI"
 }
 
+export enum OrderStatus{
+  PENDING = "Pending",
+  PAID = "Paid",
+  SHIPPED = "Shipped",
+  DELIVERED = "Delivered",
+  CANCELLED = "Cancelled"
+}
+
 @Entity()
 export class Order {
 
@@ -31,8 +39,13 @@ export class Order {
   })
   user!: User;
 
-  @Column()
-  status!: "pending" | "paid" | "shipped" | "delivered" | "cancelled";
+  @Column({
+    type: "enum",
+    enum: OrderStatus,
+  })
+  status!: OrderStatus
+
+  // status!: "pending" | "paid" | "shipped" | "delivered" | "cancelled";
 
   @Column({ type: "decimal", precision: 10, scale: 2 })
   totalAmount!: number;
