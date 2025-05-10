@@ -1,5 +1,9 @@
 import { Request } from "express";
 import { JwtPayload } from "jsonwebtoken";
+
+import { Order } from "../../entities/orderEntity";
+
+
 export interface RequestWithUser extends Request {
   user: {
     id: string;
@@ -13,3 +17,24 @@ declare global {
     }
   }
 }
+
+
+
+export type OrderListResponse = {
+    orders: Order[];
+    totalOrders: number;
+    totalPages: number;
+}
+
+export type GetOrdersParams = {
+  page: number;
+  pageSize: number;
+  filters?:{
+    status?: string;
+    userId?: string;
+    dateFrom?:Date;
+    dateTo: Date;
+  };
+  sortBy?: 'createdAt' | 'totalAmount';
+  sorOrder?: 'ASC' | 'DESC'
+};

@@ -1,8 +1,6 @@
-import { Request, Response } from "express";
-import { createOrderFromCartService, getOrderByIdService, getOrdersForUserService, updateOrderStatusService } from "../services/createOrderFromCartService";
-import { error } from "console";
+import { NextFunction, Request, Response } from "express";
+import { createOrderFromCartService, deleteOrderService, getAllOrders, getOrderByIdService, getOrdersForUserService, updateOrderStatusService } from "../services/createOrderFromCartService";
 import { PaymentMethod } from "../entities/orderEntity";
-import { userInfo } from "os";
 
 export const createOrderFromCartController = async (
   req: Request,
@@ -66,4 +64,40 @@ export const updateOrderStatus = async(req: Request, res: Response) =>{
     res.status(400).json({message: "Couldn't update the status of order", error: err instanceof Error? err.message : "Unknown error"})
   }
 
+}
+
+export const deleteOrder = async(req: Request, res: Response, next: NextFunction) =>{
+  try{
+
+    const userId = req?.user?.id;
+    const orderId = req?.params?.id;
+    
+    const deleteOrder = await deleteOrderService(userId, orderId)
+    res.status(201).json({
+      message: "Order successfully deleted",
+      deleteOrder: "abc123"
+    })
+  }catch(err){
+    res.status(400).json({
+      message: "Couldn't delete the order",
+      error: err instanceof Error ? err.message : "Unknown error"
+    })
+  }
+      
+}
+
+export const getAllOrder = async(req: Request, res: Response, next: NextFunction) =>{
+  try{
+
+    const pageNumber = parseInt(req?.params?.pageNumber || '1');
+    const pageSize = parseInt(req?.params?.pageSize || '10');
+    const orders =await getAllOrders(pageNumber, pageSize)
+    res.status(201).json({orders})
+  }catch(err){
+    res.status(400).json({
+      message: 'Could not fetch the order list',
+      error: err instanceof Error ? err.message : "Unknown error"
+
+    })
+  }
 }

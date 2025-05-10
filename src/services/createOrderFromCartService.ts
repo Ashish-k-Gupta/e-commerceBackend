@@ -5,6 +5,7 @@ import { Order, OrderStatus, PaymentMethod } from "../entities/orderEntity";
 import { OrderItem } from "../entities/orderItemEntity";
 import { Product } from "../entities/productEntity";
 import { User } from "../entities/userEntity";
+import { OrderListResponse } from "../types/express/order.types";
 
 const userRepo = AppDataSource.getRepository(User);
 const productRepo = AppDataSource.getRepository(Product);
@@ -126,3 +127,36 @@ if(!order){
   return await orderRepo.save(order)
 }
 
+export const deleteOrderService = async(userId: string, orderId: string): Promise<Order> =>{
+   const order = await orderRepo.findOne({
+    where:{ 
+    id: orderId ,
+    user: {id: userId}
+   },
+   relations: ['user']
+  })
+  if(!order){
+      throw new Error(`Order with ID ${orderId} doesn't exist or doesn't belong to user ${userId}`);
+  }
+  if(order.deletedAt){
+    throw new Error (`Order with ID ${orderId} has already been deleted`);;;
+  }
+  return await orderRepo.softRemove(order)
+}
+
+export const getAllOrders = async(page: number, pageSize: number): Promise<OrderListResponse> =>{
+  const [allOrders, total] = await orderRepo.findAndCount({
+    relations: ['user'],
+    skip: (page -1) * pageSize,
+    take: pageSize
+  })
+
+  if(allOrders.length === 0){
+    throw new Error(`No order exists in the system`)
+  }
+  return {
+    orders: allOrders,
+    totalOrders: total,
+    totalPages: Math.ceil(total / pageSize),
+  };
+}
