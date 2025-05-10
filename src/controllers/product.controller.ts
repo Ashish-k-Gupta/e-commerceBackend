@@ -6,6 +6,7 @@ import {
   updateProductService,
 } from "../services/productServices";
 import { error } from "console";
+import { GetProductParams } from "../types/express";
 
 export const addProduct = async (
   req: Request,
@@ -30,8 +31,39 @@ export const getProducts = async (
   next: NextFunction,
 ) => {
   try {
-    const allProducts = await getProductService();
-    res.status(200).json({ allProducts });
+    const{
+      page='1',
+      pageSize = '10',
+      name,
+      // stock,
+      sortBy,
+      sortOrder,
+    } = req.query
+    const pageNum = parseInt(page as string)
+    const size = parseInt(pageSize as string)
+
+    if(isNaN(pageNum) || isNaN(size)){
+       res.status(400).json({message: "Invalid pagination parameters"})
+    }
+
+    const validSortFields = ['name', 'price'] as const;
+    const validSortOrders = ['ASC', 'DESC'] as const;
+
+    const sortField = validSortFields.includes(sortBy as typeof validSortFields[number]) ? sortBy as typeof validSortFields[number] : 'price'
+    const orderDirection = validSortOrders.includes(sortOrder as typeof validSortOrders[number]) ? (sortOrder as typeof validSortOrders[number]): 'DESC';
+
+    const params: GetProductParams ={
+      page:parseInt(page as string),
+      pageSize: parseInt(pageSize as string),
+      filters:{
+        name: name as string,
+      },
+      sortBy:sortField,
+      sortOrder: orderDirection
+    }
+
+    const allProducts = await getProductService(params);
+    res.status(200).json(allProducts);
   } catch (err) {
     res.status(400).json({
       message: "Could fetch the request",
@@ -62,7 +94,6 @@ export const deleteProduct = async (
 export const updateProduct = async (
   req: Request,
   res: Response,
-  next: NextFunction,
 ) => {
   try {
     const productId = req?.params?.id;

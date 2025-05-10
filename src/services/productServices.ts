@@ -1,7 +1,9 @@
+import { FindOptionsWhere, MoreThan } from "typeorm";
 import { AppDataSource } from "../config/data-source";
 import { addProduct, updateProduct } from "../dtos/product.dto";
 import { Product } from "../entities/productEntity";
 import { User } from "../entities/userEntity";
+import { GetProductParams, ProductListResponse } from "../types/express";
 
 const productRepo = AppDataSource.getRepository(Product);
 const userRepo = AppDataSource.getRepository(User);
@@ -22,8 +24,30 @@ export const addProductService = async (
   return productRepo.save(product);
 };
 
-export const getProductService = async (): Promise<Product[]> => {
-  const products = await productRepo.find({
+export const getProductService = async (
+  params: GetProductParams
+): Promise<ProductListResponse> => {
+  const {
+    page,
+    pageSize,
+    filters,
+    sortBy='price',
+    sortOrder = "DESC"
+  } = params;
+
+  const where: FindOptionsWhere<Product> ={};
+
+  if(filters?.name){
+    where.name = filters.name
+  }
+
+  // if(filters?.stock){
+  //   const stockNumber = Number(filters.stock);
+  //   if(!isNaN(stockNumber)){
+  //     where.stock = MoreThan(stockNumber)
+  //   }
+  // }
+  const [products, total] = await productRepo.findAndCount({
     select: {
       id: true,
       name: true,
@@ -31,8 +55,21 @@ export const getProductService = async (): Promise<Product[]> => {
       stock: true,
       imageUrl: true,
     },
+    order:{
+      [sortBy]: sortOrder,
+    },
+    skip: (page -1) * pageSize,
+    take: pageSize,
   });
-  return products;
+   if(products.length === 0){
+    throw new Error(`No product exists in the system`)
+  }
+  return{
+    product: products,
+    totalProduct: total,
+    totalPages: Math.ceil(total/pageSize)
+  }
+  // return products;
 };
 
 export const deleteProductService = async (

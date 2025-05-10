@@ -1,3 +1,4 @@
+import { Between, FindOptionsWhere, LessThanOrEqual, MoreThanOrEqual } from "typeorm";
 import { AppDataSource } from "../config/data-source";
 import { Cart } from "../entities/cartEntity";
 import { CartItem } from "../entities/cartItemEntity";
@@ -5,7 +6,7 @@ import { Order, OrderStatus, PaymentMethod } from "../entities/orderEntity";
 import { OrderItem } from "../entities/orderItemEntity";
 import { Product } from "../entities/productEntity";
 import { User } from "../entities/userEntity";
-import { OrderListResponse } from "../types/express/order.types";
+import { GetOrdersParams, OrderListResponse } from "../types/express";
 
 const userRepo = AppDataSource.getRepository(User);
 const productRepo = AppDataSource.getRepository(Product);
@@ -144,19 +145,46 @@ export const deleteOrderService = async(userId: string, orderId: string): Promis
   return await orderRepo.softRemove(order)
 }
 
-export const getAllOrders = async(page: number, pageSize: number): Promise<OrderListResponse> =>{
+export const getAllOrdersService = async(
+  params: GetOrdersParams
+): Promise<OrderListResponse> =>{
+  const {
+    page,
+    pageSize,
+    filters,
+    sortBy = 'createdAt',
+    sortOrder = "DESC"
+  }  = params;
+
+  const where: FindOptionsWhere<Order> = {};
+
+  if(filters?.status){
+    where.status = filters.status as OrderStatus;
+  }
+
+  if(filters?.userId){
+    where.user = {id: filters.userId};
+  }
+
+  if(filters?.dateFrom && filters?.dateTo){
+    where.createdAt = Between(filters.dateFrom, filters.dateTo);
+  }else if(filters?.dateFrom){
+    where.createdAt = MoreThanOrEqual(filters.dateFrom);
+  }else if(filters?.dateTo){
+    where.createdAt = LessThanOrEqual(filters.dateTo);
+  }
   const [allOrders, total] = await orderRepo.findAndCount({
     relations: ['user'],
-    skip: (page -1) * pageSize,
-    take: pageSize
+    where,
+    order:{
+      [sortBy]: sortOrder,
+    },
+    skip: (page- 1) * pageSize,
+    take: pageSize,
   })
-
-  if(allOrders.length === 0){
-    throw new Error(`No order exists in the system`)
-  }
   return {
     orders: allOrders,
     totalOrders: total,
     totalPages: Math.ceil(total / pageSize),
   };
-}
+};

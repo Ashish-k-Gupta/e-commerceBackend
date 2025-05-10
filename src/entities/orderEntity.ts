@@ -56,6 +56,9 @@ export class Order {
   })
   paymentMethod!: PaymentMethod;
 
+  @CreateDateColumn()
+  createdAt!: Date;
+
   @UpdateDateColumn()
   updatedAt!: Date;
 

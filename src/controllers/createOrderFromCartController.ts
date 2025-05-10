@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
-import { createOrderFromCartService, deleteOrderService, getAllOrders, getOrderByIdService, getOrdersForUserService, updateOrderStatusService } from "../services/createOrderFromCartService";
-import { PaymentMethod } from "../entities/orderEntity";
+import { createOrderFromCartService, deleteOrderService, getAllOrdersService, getOrderByIdService, getOrdersForUserService, updateOrderStatusService } from "../services/createOrderFromCartService";
+import { OrderStatus, PaymentMethod } from "../entities/orderEntity";
+import { GetOrdersParams } from "../types/express";
 
 export const createOrderFromCartController = async (
   req: Request,
@@ -88,10 +89,30 @@ export const deleteOrder = async(req: Request, res: Response, next: NextFunction
 
 export const getAllOrder = async(req: Request, res: Response, next: NextFunction) =>{
   try{
+    const{
+      page = '1',
+      pageSize = '10', 
+      status,
+      userId,
+      dateFrom,
+      dateTo,
+      sortBy,
+      sortOrder,
+    } = req.query
 
-    const pageNumber = parseInt(req?.params?.pageNumber || '1');
-    const pageSize = parseInt(req?.params?.pageSize || '10');
-    const orders =await getAllOrders(pageNumber, pageSize)
+    const params: GetOrdersParams ={
+      page: parseInt(page as string),
+      pageSize: parseInt(pageSize as string),
+      filters:{
+        status: status as OrderStatus,
+        userId: userId as string,
+        dateFrom:  dateFrom ? new Date(dateFrom as string): undefined,
+        dateTo: dateTo ? new Date (dateTo as string): undefined,
+      },
+      sortBy: sortBy as 'createdAt' | 'totalAmount',
+      sortOrder: sortOrder as 'ASC' | 'DESC'
+    }
+    const orders = await getAllOrdersService(params)
     res.status(201).json({orders})
   }catch(err){
     res.status(400).json({

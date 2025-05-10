@@ -2,6 +2,7 @@ import { Request } from "express";
 import { JwtPayload } from "jsonwebtoken";
 
 import { Order } from "../../entities/orderEntity";
+import { Product } from "../../entities/productEntity";
 
 
 export interface RequestWithUser extends Request {
@@ -33,8 +34,25 @@ export type GetOrdersParams = {
     status?: string;
     userId?: string;
     dateFrom?:Date;
-    dateTo: Date;
+    dateTo?: Date;
   };
   sortBy?: 'createdAt' | 'totalAmount';
-  sorOrder?: 'ASC' | 'DESC'
+  sortOrder?: 'ASC' | 'DESC'
 };
+
+export type GetProductParams = {
+  page: number;
+  pageSize: number;
+  filters?:{
+    name?: string;
+    // stock?: string;
+  };
+  sortBy?: 'price' | 'name';
+  sortOrder?: 'ASC' | 'DESC'
+}
+
+export type ProductListResponse ={
+  product: Product[];
+  totalProduct: number;
+  totalPages: number;
+}
