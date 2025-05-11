@@ -2,6 +2,7 @@ import { AppDataSource } from "../config/data-source";
 import { CreateUserPayload, UpdateUserPayload } from "../dtos/user.dto";
 import { User } from "../entities/userEntity";
 import { hashUtil } from "../utils/hash.util";
+import { sendNewUserEmailNotification } from "./email.service";
 
 const userRepo = AppDataSource.getRepository(User);
 
@@ -77,6 +78,9 @@ export const createUserService = async (
     password: hashedPassword,
   });
   const savedUser = await userRepo.save(newUser);
+  sendNewUserEmailNotification(savedUser)
+  .then(() => console.log(`Notification email sent for the new user ${savedUser.email}`))
+  .catch(err => console.log(`Failed to send notification email for ${savedUser.email}:`, err))
   const newUserResponse = await userRepo.findOne({
     where: {
       id: savedUser.id,
