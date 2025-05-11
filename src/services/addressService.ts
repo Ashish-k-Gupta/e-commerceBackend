@@ -26,6 +26,7 @@ export const createAddressService = async (
 export const getAddressesService = async (
   userId: string,
 ): Promise<Address[]> => {
+  console.log("Fetching address", { userId });
   return addressRepo.find({
     where: { user: { id: userId } },
   });
@@ -35,6 +36,7 @@ export const getAddressByIdService = async (
   userId: string,
   addressId: string,
 ): Promise<Address | null> => {
+  console.log("Fetching address", { userId, addressId });
   const address = await addressRepo.findOne({
     where: {
       user: { id: userId },
@@ -42,11 +44,7 @@ export const getAddressByIdService = async (
     },
     relations: ["user"],
   });
-
-  if (!address) {
-    return null;
-  }
-  return address;
+  return address || null;
 };
 
 export const deleteAddressService = async (

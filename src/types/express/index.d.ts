@@ -5,16 +5,20 @@ import { Order } from "../../entities/orderEntity";
 import { Product } from "../../entities/productEntity";
 
 
-export interface RequestWithUser extends Request {
-  user: {
-    id: string;
-  };
-}
+// export interface RequestWithUser extends Request {
+//   user: {
+//     id: string;
+//   };
+// }
 
 declare global {
   namespace Express {
     interface Request {
-      user?: JwtPayload;
+      user?:{
+        id: string;
+        email?: string;
+        role?: string;
+      }
     }
   }
 }

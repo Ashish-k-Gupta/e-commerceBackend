@@ -12,7 +12,7 @@ export class CreateAdminUser20230505000000 implements MigrationInterface {
       password: hashedPassword,
       firstName: "Ashish",
       lastName: "Gupta",
-      phoneNumber: "7888436679",
+      phoneNumber: "1234567890",
       role: "admin",
     });
   }

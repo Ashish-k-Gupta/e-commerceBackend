@@ -1,3 +1,59 @@
+// import express, { Request, Response } from "express";
+// import cors from "cors";
+// import dotenv from "dotenv";
+// import { AppDataSource } from "./config/data-source";
+// import authRoutes from "./routes/auth.route";
+// import authMiddleware from "./middlewares/authMiddleware";
+// import addressRouter from "./routes/address.route";
+// import userRouter from "./routes/user.route";
+// import productRouter from "./routes/product.route";
+// import cartRouter from "./routes/cart.route";
+// import orderRouter from "./routes/order.routes";
+
+// import { globalErrorHandler } from "./middlewares/globalErrorHandler";
+
+// dotenv.config();
+
+// const app = express();
+// app.use(
+//   cors({
+//     origin: "http://localhost:3000",
+//     credentials: true,
+//   }),
+// );
+// const PORT = process.env.PORT || 5000;
+
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
+
+// // Routes
+// app.get("/", (req: Request, res: Response) => {
+//   res.status(200).json("Hello, world");
+// });
+
+// app.use("/api/auth", authRoutes);
+// app.use("/orders", authMiddleware);
+// app.use("/api/addresses", addressRouter);
+// app.use("/", userRouter);
+// app.use("/api/product", productRouter);
+// app.use("/api/cart", cartRouter);
+// app.use("/api/order", orderRouter);
+
+// app.use(globalErrorHandler)
+
+
+// AppDataSource.initialize()
+//   .then(() => {
+//     console.log("Connected to database");
+
+//     app.listen(PORT, () => {
+//       console.log(`Your server is running on PORT http://localhost:${PORT}`);
+//     });
+//   })
+//   .catch((error) => {
+//     console.error("Database connnection failed:", error);
+//   });
+
 import express, { Request, Response } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
@@ -7,9 +63,11 @@ import authMiddleware from "./middlewares/authMiddleware";
 import addressRouter from "./routes/address.route";
 import userRouter from "./routes/user.route";
 import productRouter from "./routes/product.route";
-import { getOrCreateCart } from "./controllers/cart.controller";
 import cartRouter from "./routes/cart.route";
 import orderRouter from "./routes/order.routes";
+
+// Import global error handler
+import { globalErrorHandler } from "./middlewares/globalErrorHandler";
 
 dotenv.config();
 
@@ -20,6 +78,7 @@ app.use(
     credentials: true,
   }),
 );
+
 const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
@@ -38,14 +97,19 @@ app.use("/api/product", productRouter);
 app.use("/api/cart", cartRouter);
 app.use("/api/order", orderRouter);
 
+// Initialize database connection
 AppDataSource.initialize()
   .then(() => {
     console.log("Connected to database");
 
+    // Start the server after DB connection is successful
     app.listen(PORT, () => {
       console.log(`Your server is running on PORT http://localhost:${PORT}`);
     });
   })
   .catch((error) => {
-    console.error("Database connnection failed:", error);
+    console.error("Database connection failed:", error);
   });
+
+// Global error handler - placed after all routes and DB initialization
+app.use(globalErrorHandler);
