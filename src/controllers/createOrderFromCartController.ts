@@ -8,7 +8,7 @@ export const createOrderFromCartController = async (
   res: Response,
 ) => {
   try {
-    const userId = req?.user?.id;
+    const userId = req?.user!.id;
     const { paymentMethod } = req.body;
 
     if (!paymentMethod) {
@@ -35,7 +35,7 @@ export const createOrderFromCartController = async (
 
 export const getOrdersForUser = async (req: Request, res: Response) =>{
   try{
-    const userId =await req?.user?.id;
+    const userId =await req?.user!.id;
     const orders =await getOrdersForUserService(userId);
     res.status(201).json({orders})
   }catch(err){
@@ -45,7 +45,7 @@ export const getOrdersForUser = async (req: Request, res: Response) =>{
 
 export const getOrderById = async (req: Request, res: Response) =>{
   try{
-    const userId = req?.user?.id;
+    const userId = req?.user!.id;
     const orderId = req?.params?.id;
     const order = await getOrderByIdService(userId, orderId)
     res.status(201).json({order})
@@ -56,7 +56,7 @@ export const getOrderById = async (req: Request, res: Response) =>{
 
 export const updateOrderStatus = async(req: Request, res: Response) =>{
   try{
-    const userId = req?.user?.id;
+    const userId = req?.user!.id;
     const orderId = req?.params?.id;
     const {status} = req?.body
     const updatedOrder = await updateOrderStatusService(userId, orderId, status)
@@ -70,7 +70,7 @@ export const updateOrderStatus = async(req: Request, res: Response) =>{
 export const deleteOrder = async(req: Request, res: Response, next: NextFunction) =>{
   try{
 
-    const userId = req?.user?.id;
+    const userId = req?.user!.id;
     const orderId = req?.params?.id;
     
     const deleteOrder = await deleteOrderService(userId, orderId)

@@ -15,10 +15,10 @@ export const createAddress = async (
   try {
     const userId = req.user!.id;
     if(!userId){
-      return res.status(401).json({message: 'Unauthorized: Missing user ID'})
+       res.status(401).json({message: 'Unauthorized: Missing user ID'})
     }
     const address = await createAddressService(userId, req.body);
-    return res.status(201).json({ message: "Address created successfully", address });
+    res.status(201).json({ message: "Address created successfully", address });
   } catch (err) {
     next(err)
   }

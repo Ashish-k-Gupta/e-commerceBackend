@@ -14,7 +14,7 @@ export const addProduct = async (
   next: NextFunction,
 ) => {
   try {
-    const userId = req?.user?.id;
+    const userId = req?.user!.id;
     const product = await addProductService(userId, req.body);
     res.status(201).json({ message: "Product created successfully", product });
   } catch (err) {

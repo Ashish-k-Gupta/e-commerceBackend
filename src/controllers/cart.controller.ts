@@ -13,7 +13,7 @@ export const getOrCreateCart = async (
   next: NextFunction,
 ) => {
   try {
-    const userId = req?.user?.id;
+    const userId = req?.user!.id;
     if (!userId) {
       res.status(401).json({ message: "Unauthorized: user ID missing" });
     }
@@ -111,7 +111,7 @@ export const clearCart = async (
   next: NextFunction,
 ) => {
   try {
-    const userId = req?.user?.id;
+    const userId = req?.user!.id;
     await clearCartService(userId);
     res.status(200).json({ message: "You cart has been cleared" });
   } catch (err) {
